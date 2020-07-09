@@ -149,7 +149,7 @@ export class Content extends Component {
                       <Tooltip/>
                       <Legend/>
                       <Bar dataKey='NewConfirmed' fill='#8884d8' />
-                      <Bar dataKey='NewRecovered' fill='#FF9AA2' />
+                      <Bar dataKey='NewDeaths' fill='#FF9AA2' />
                     </BarChart>
                 </ResponsiveContainer>
                 </div>
