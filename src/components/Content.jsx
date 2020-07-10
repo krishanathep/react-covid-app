@@ -81,77 +81,48 @@ export class Content extends Component {
       <div className="Content">
         <div className="container">
           <div className="row">
-            <div className="col-md-3 col-6 mt-4">
-              <div className="card bg-success text-white" align="center">
-                <div className="card-body">
-                  <p className="card-text">CONFIRMED</p>
-                  <h4 className="card-title">
-                    {data_text.confirmed.toLocaleString()}
-                  </h4>
-                  <span className="card-text">
-                    ({data_text.newConfirmed.toLocaleString()})
-                  </span>
-                </div>
+            <div className="col-md-3 mt-4">
+              <div className="card-counter info">
+              <i className="fas fa-virus"></i>
+                <span className="count-numbers">{data_text.confirmed.toLocaleString()}</span>
+                <span className="count-name">CONFIRMED ({data_text.newConfirmed.toLocaleString()})</span>
               </div>
             </div>
-            <div className="col-md-3 col-6 mt-4">
-              <div className="card bg-success text-white" align="center">
-                <div className="card-body">
-                  <p className="card-text">HOSPITALIZED</p>
-                  <h4 className="card-title">
-                    {data_text.hospitalized.toLocaleString()}
-                  </h4>
-                  <span className="card-text">
-                    ({data_text.newHospitalized.toLocaleString()})
-                  </span>
-                </div>
+            <div className="col-md-3 mt-4">
+            <div className="card-counter primary">
+            <i className="fas fa-hospital"></i>
+                <span className="count-numbers">{data_text.hospitalized.toLocaleString()}</span>
+                <span className="count-name">HOSPITALIZED ({data_text.newHospitalized.toLocaleString()})</span>
               </div>
             </div>
-            <div className="col-md-3 col-6 mt-4">
-              <div className="card bg-success text-white" align="center">
-                <div className="card-body">
-                  <p className="card-text">DEATHS</p>
-                  <h4 className="card-title">
-                    {data_text.deaths.toLocaleString()}
-                  </h4>
-                  <span className="card-text">
-                    ({data_text.newDeaths.toLocaleString()})
-                  </span>
-                </div>
+            <div className="col-md-3 mt-4">
+            <div className="card-counter success">
+            <i className="fas fa-user-md"></i>
+                <span className="count-numbers">{data_text.recovered.toLocaleString()}</span>
+                <span className="count-name">RECOVERED ({data_text.newRecovered.toLocaleString()})</span>
               </div>
             </div>
-            <div className="col-md-3 col-6 mt-4">
-              <div className="card bg-success text-white" align="center">
-                <div className="card-body">
-                  <p className="card-text">RECOVERED</p>
-                  <h4 className="card-title">
-                    {data_text.recovered.toLocaleString()}
-                  </h4>
-                  <span className="card-text">
-                    ({data_text.newRecovered.toLocaleString()})
-                  </span>
-                </div>
+            <div className="col-md-3 mt-4">
+            <div className="card-counter danger">
+            <i className="fas fa-skull-crossbones"></i>
+                <span className="count-numbers">{data_text.deaths.toLocaleString()}</span>
+                <span className="count-name">DEATHS ({data_text.newDeaths.toLocaleString()})</span>
               </div>
             </div>
             <div className="col-md-6 mt-4">
-              <div className="card" align='center'>
-                  <div className="card-body">
+              <div className="card" align="center">
+                <div className="card-body">
                   <ResponsiveContainer width="100%" height={300}>
-                    <BarChart
-                      width={500}
-                      height={300}
-                      data={dataTimeline15}
-                     
-                    >
-                      <CartesianGrid strokeDasharray='3 3' />
-                      <XAxis dataKey="Date"/>
+                    <BarChart width={500} height={300} data={dataTimeline15}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="Date" />
                       <YAxis />
-                      <Tooltip/>
-                      <Legend/>
-                      <Bar dataKey='NewConfirmed' fill='#8884d8' />
-                      <Bar dataKey='NewDeaths' fill='#FF9AA2' />
+                      <Tooltip />
+                      <Legend />
+                      <Bar dataKey="NewConfirmed" fill="#8884d8" />
+                      <Bar dataKey="NewDeaths" fill="#FF9AA2" />
                     </BarChart>
-                </ResponsiveContainer>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </div>
@@ -160,11 +131,17 @@ export class Content extends Component {
                 <div className="card-body">
                   <ResponsiveContainer width="100%" height={300}>
                     <PieChart width={400} height={300}>
-                      <Legend/>
-                      <Pie dataKey='value' isAnimationActive={false} data={data_pie} outerRadius={100} label>
-                        <Cell fill='#8884d8' />
-                        <Cell fill='#FF9AA2' />
-                        <Cell fill='#8FC1A9' />
+                      <Legend />
+                      <Pie
+                        dataKey="value"
+                        isAnimationActive={false}
+                        data={data_pie}
+                        outerRadius={100}
+                        label
+                      >
+                        <Cell fill="#8884d8" />
+                        <Cell fill="#FF9AA2" />
+                        <Cell fill="#8FC1A9" />
                       </Pie>
                     </PieChart>
                   </ResponsiveContainer>
@@ -172,26 +149,46 @@ export class Content extends Component {
               </div>
             </div>
             <div className="col-md-12 mt-4 mb-4">
-                <div className="card">
-                  <div className="card-body">
-                    <ResponsiveContainer width='100%' height={300}>
-                      <LineChart
-                        data={dataTimeline}
-                        margin={{ top: 5, right: 5, left:0, bottom:5 }}
-                      >
-                        <CartesianGrid strokeDasharray='3 3' />
-                        <XAxis dataKey='Date'/>
-                        <YAxis />
-                        <Legend/>
-                        <Line type='monotone' dataKey='Confirmed' stroke='blue' dot={false} />
-                        <Line type='monotone' dataKey='Hospitalized' stroke='orange' dot={false}/>
-                        <Line type='monotone' dataKey='Deaths' stroke='red' dot={false} />
-                        <Line type='monotone' dataKey='Recovered' stroke='green' dot={false} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
+              <div className="card">
+                <div className="card-body">
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart
+                      data={dataTimeline}
+                      margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                    >
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="Date" />
+                      <YAxis />
+                      <Legend />
+                      <Line
+                        type="monotone"
+                        dataKey="Confirmed"
+                        stroke="blue"
+                        dot={false}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="Hospitalized"
+                        stroke="orange"
+                        dot={false}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="Deaths"
+                        stroke="red"
+                        dot={false}
+                      />
+                      <Line
+                        type="monotone"
+                        dataKey="Recovered"
+                        stroke="green"
+                        dot={false}
+                      />
+                    </LineChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>
